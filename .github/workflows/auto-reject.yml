@@ -17,7 +17,15 @@ jobs:
           if [ ${{ github.event.pull_request.head.repo.fork }} == true ] &&
           [ ${{ github.base_ref }} == 'dev' ] ||
           [ ${{ github.base_ref }} == 'main' ]; then
-            gh pr close ${{ github.event.pull_request.number }} --comment "Closing comment" --repo ${{ github.repository }}
+            comment="Hello and thank you for considering contributing to our project! Please note that we do not allow pull requests directly from forks to the dev or main branches of the upstream repository.
+
+            If you would like to contribute changes that target those branches, please create a new branch with a different name in your forked repository and submit a pull request from there. This will help us keep our branches organized and maintain a clean history of contributions.
+
+            If you have any questions or need assistance with this process, please don't hesitate to reach out to us on our communication channels or open an issue on our repository. We appreciate your contributions and look forward to working with you!"
+
+            gh pr close ${{ github.event.pull_request.number }} --comment $comment --repo ${{ github.repository }}
           fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
