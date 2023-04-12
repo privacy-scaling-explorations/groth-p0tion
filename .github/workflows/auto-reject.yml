@@ -38,7 +38,7 @@ jobs:
           [ ${{ github.base_ref }} == 'dev' ] ||
           [ ${{ github.base_ref }} == 'main' ] ||
           [ ${{ github.base_ref }} == 'ci-update' ]; then
-            # gh pr create --base 'dev' --head 'new-branch'
+            gh pr create --base 'dev' --head 'new-branch'
           fi
 
 
