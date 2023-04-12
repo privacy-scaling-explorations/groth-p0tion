@@ -1,20 +1,24 @@
 name: Validate
 
 on:
-    pull_request:
+  pull_request:
 
 jobs:
-    reject-if-:
-        runs-on: ubuntu-20.04
+  reject-if-:
+  runs-on: ubuntu-20.04
 
-        steps:
-            - name: Draft Release
-              run: |
-                  echo github.repository "${{ github.repository }}"
-                  echo github.base_ref ${{ github.base_ref }} // need to check if dev or main
-                  echo ${{ github.event.pull_request.head.repo.fork }}
-                  echo ${{ github.event.pull_request.head.repo }}
+  steps:
+    - name: Draft Release
+      run: |
+        if [ ${{ github.event.pull_request.head.repo.fork }} == true ] ||
+        [ ${{ github.base_ref }} == 'dev' ] || [ ${{ github.base_ref }} == 'main' ]; then
+          // close
+          gh pr close ${{ github.event.pull_request.number }} --comment "Closing comment"
+        fi
 
 
-
+        echo github.repository "${{ github.repository }}"
+        echo github.base_ref  // need to check if dev or main
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
