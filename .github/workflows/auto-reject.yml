@@ -1,0 +1,20 @@
+name: Validate
+
+on:
+    pull_request:
+    pr:
+
+jobs:
+    reject-if-:
+        runs-on: ubuntu-20.04
+
+        steps:
+            - uses: actions/checkout@v3
+
+            - name: Draft Release
+              run: |
+                  echo github.repository "${{ github.repository }}"
+                  echo "target: ${{ var.GITHUB_BASE_REF }}"
+                  echo "pr source: ${{ var.GITHUB_REPOSITORY }}"
+
+
