@@ -11,7 +11,6 @@ jobs:
 
     steps:
       # - uses: actions/checkout@v3
-
       - name: Check target branch
         run: |
           if [ ${{ github.event.pull_request.head.repo.fork }} == true ] &&
