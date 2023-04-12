@@ -20,8 +20,9 @@ jobs:
           [ ${{ github.base_ref }} == 'dev' ] ||
           [ ${{ github.base_ref }} == 'main' ] ||
           [ ${{ github.base_ref }} == 'ci-update' ]; then
-
-            gh pr close ${{ github.event.pull_request.number }} --comment 'Closing PR' --repo ${{ github.repository }}
+            echo -e "Hello and thank you for considering contributing to our project! Please note that we do not allow pull requests directly from forks to the dev or main branches of the upstream repository.\nIf you would like to contribute changes that target those branches, please create a new branch with a different name in your forked repository and submit a pull request from there. This will help us keep our branches organized and maintain a clean history of contributions.\nIf you have any questions or need assistance with this process, please don't hesitate to reach out to us on our communication channels or open an issue on our repository. We appreciate your contributions and look forward to working with you!" > comment
+            export comment=$(cat comment)
+            gh pr close ${{ github.event.pull_request.number }} --comment "$comment" --repo ${{ github.repository }}
           fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
