@@ -12,8 +12,9 @@ jobs:
               run: |
                   echo github.repository "${{ github.repository }}"
                   echo github.base_ref ${{ github.base_ref }} // need to check if dev or main
-                  echo github.head_ref ${{ github.head_ref }}
-                  echo "target: ${{ vars.GITHUB_BASE_REF }}"
-                  echo "pr source: ${{ vars.GITHUB_REPOSITORY }}"
+                  echo ${{ github.event.pull_request.head.repo.fork }}
+                  echo ${{ github.event.pull_request.head.repo }}
+
+
 
 
