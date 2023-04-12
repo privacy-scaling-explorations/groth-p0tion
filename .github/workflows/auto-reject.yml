@@ -8,12 +8,10 @@ jobs:
         runs-on: ubuntu-20.04
 
         steps:
-            - uses: actions/checkout@v3
-
             - name: Draft Release
               run: |
                   echo github.repository "${{ github.repository }}"
-                  echo "target: ${{ var.GITHUB_BASE_REF }}"
-                  echo "pr source: ${{ var.GITHUB_REPOSITORY }}"
+                  echo "target: ${{ vars.GITHUB_BASE_REF }}"
+                  echo "pr source: ${{ vars.GITHUB_REPOSITORY }}"
 
 
