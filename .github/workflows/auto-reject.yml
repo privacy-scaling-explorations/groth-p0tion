@@ -8,6 +8,8 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
+      - uses: actions/checkout@v3
+
       - name: Draft Release
         run: |
           if [ ${{ github.event.pull_request.head.repo.fork }} == true ] ||
@@ -17,7 +19,6 @@ jobs:
 
 
           echo github.repository "${{ github.repository }}"
-          echo github.base_ref  // need to check if dev or main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
