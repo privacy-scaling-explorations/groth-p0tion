@@ -1,0 +1,23 @@
+# Automatically close pull requests created from a forked repository
+# if the target branch is either "dev" or "main".
+name: Validate PR
+
+on:
+  pull_request_target:
+
+jobs:
+  validate-pr:
+    runs-on: ubuntu-22.04
+
+    steps:
+      # - uses: actions/checkout@v3
+
+      - name: Check target branch
+        run: |
+          if [ ${{ github.event.pull_request.head.repo.fork }} == true ] &&
+          [ ${{ github.base_ref }} == 'dev' ] ||
+          [ ${{ github.base_ref }} == 'main' ]; then
+            gh pr close ${{ github.event.pull_request.number }} --comment "Closing comment" --repo ${{ github.repository }}
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
