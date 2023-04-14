@@ -1,4 +1,4 @@
-# MPC Phase2 Suite
+# MPC Phase2 Suite!
 
 The Multi-Party Computation suite of tools for conducting zkSNARK Phase 2 Trusted Setup ceremonies.
 
